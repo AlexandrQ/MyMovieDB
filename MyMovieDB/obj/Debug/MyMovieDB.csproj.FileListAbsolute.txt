@@ -1,0 +1,14 @@
+C:\Users\Nathaniel\Desktop\КР летняя сессия 2017\Нейронные сети\Материал\MyMovieDB\MyMovieDB\bin\Debug\MyMovieDB.exe.config
+C:\Users\Nathaniel\Desktop\КР летняя сессия 2017\Нейронные сети\Материал\MyMovieDB\MyMovieDB\obj\Debug\MyMovieDB.csprojResolveAssemblyReference.cache
+C:\Users\Nathaniel\Desktop\КР летняя сессия 2017\Нейронные сети\Материал\MyMovieDB\MyMovieDB\obj\Debug\MyMovieDB.Properties.Resources.resources
+C:\Users\Nathaniel\Desktop\КР летняя сессия 2017\Нейронные сети\Материал\MyMovieDB\MyMovieDB\obj\Debug\MyMovieDB.csproj.GenerateResource.Cache
+C:\Users\Nathaniel\Desktop\From C++\MyMovieDB\MyMovieDB\bin\Debug\MyMovieDB.exe.config
+C:\Users\Nathaniel\Desktop\From C++\MyMovieDB\MyMovieDB\obj\Debug\MyMovieDB.csprojResolveAssemblyReference.cache
+C:\Users\Nathaniel\Desktop\From C++\MyMovieDB\MyMovieDB\obj\Debug\MyMovieDB.Properties.Resources.resources
+C:\Users\Nathaniel\Desktop\From C++\MyMovieDB\MyMovieDB\obj\Debug\MyMovieDB.csproj.GenerateResource.Cache
+C:\Users\Nathaniel\Desktop\From C++\MyMovieDB\MyMovieDB\bin\Debug\MyMovieDB.exe
+C:\Users\Nathaniel\Desktop\From C++\MyMovieDB\MyMovieDB\bin\Debug\MyMovieDB.pdb
+C:\Users\Nathaniel\Desktop\From C++\MyMovieDB\MyMovieDB\obj\Debug\MyMovieDB.exe
+C:\Users\Nathaniel\Desktop\From C++\MyMovieDB\MyMovieDB\obj\Debug\MyMovieDB.pdb
+C:\Users\Nathaniel\Desktop\From C++\MyMovieDB\MyMovieDB\obj\Debug\MyMovieDB.Form1.resources
+C:\Users\Nathaniel\Desktop\From C++\MyMovieDB\MyMovieDB\obj\Debug\MyMovieDB.Form2.resources
