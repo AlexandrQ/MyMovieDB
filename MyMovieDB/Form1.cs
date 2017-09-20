@@ -60,10 +60,7 @@ namespace MyMovieDB
                 {                    
                     SqlCommand com = new SqlCommand(qStr, conn);
                     SqlDataReader read = com.ExecuteReader();
-                    //read.Read();
-
-                    //textBox7.Text = read["NAME_OF_FIRM"].ToString();
-
+                    
 
                     if (read.HasRows)
                     {
@@ -71,8 +68,7 @@ namespace MyMovieDB
                         {
                             dataGridView1.Rows.Add(read["movieID"].ToString(),
                         read["Title"].ToString(),
-                        read["Publisher"].ToString(),
-                        //read["Previewed"].ToString(),
+                        read["Publisher"].ToString(),                        
                         read["MovieYear"].ToString(),
                         read["type"].ToString());
                         }
@@ -133,14 +129,13 @@ namespace MyMovieDB
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //querryStr = "SELECT * FROM MyMovieDB2.dbo.movie WHERE Title = '" + textBox4.Text + "'";
-            querryStr = "SELECT movieID ,Title ,Publisher ,MovieYear ,MyMovieDB2.dbo.movietype.Type FROM MyMovieDB2.dbo.movie, MyMovieDB2.dbo.movietype WHERE movie.typeID = movietype.typeID AND Title = '" + textBox4.Text + "'";
+            querryStr = string.Format("SELECT movieID ,Title ,Publisher ,MovieYear ,MyMovieDB2.dbo.movietype.Type FROM MyMovieDB2.dbo.movie, MyMovieDB2.dbo.movietype WHERE movie.typeID = movietype.typeID AND Title = '{0}'", textBox4.Text);
             dbSelect(querryStr);
         }
 
         private void button5_Click(object sender, EventArgs e)
-        {            
-            querryStr = "SELECT movieID ,Title ,Publisher ,MovieYear ,MyMovieDB2.dbo.movietype.Type FROM MyMovieDB2.dbo.movie, MyMovieDB2.dbo.movietype WHERE movie.typeID = movietype.typeID AND MyMovieDB2.dbo.movie.typeID = " + convertType(comboBox2.SelectedItem.ToString());
+        {
+            querryStr = string.Format("SELECT movieID ,Title ,Publisher ,MovieYear ,MyMovieDB2.dbo.movietype.Type FROM MyMovieDB2.dbo.movie, MyMovieDB2.dbo.movietype WHERE movie.typeID = movietype.typeID AND MyMovieDB2.dbo.movie.typeID = {0}", convertType(comboBox2.SelectedItem.ToString()));
             dbSelect(querryStr);
         }
 
@@ -152,45 +147,34 @@ namespace MyMovieDB
             int yr2 = CheckYear(secondYear);
             if ((yr1 != 1 && yr2 != 1) && yr1 <= yr2)
             {
-                querryStr = "SELECT movieID ,Title ,Publisher ,MovieYear ,MyMovieDB2.dbo.movietype.Type FROM MyMovieDB2.dbo.movie, MyMovieDB2.dbo.movietype WHERE movie.typeID = movietype.typeID AND MovieYear BETWEEN " + yr1 + " AND " + yr2 + "";
+                querryStr = string.Format("SELECT movieID ,Title ,Publisher ,MovieYear ,MyMovieDB2.dbo.movietype.Type FROM MyMovieDB2.dbo.movie, MyMovieDB2.dbo.movietype WHERE movie.typeID = movietype.typeID AND MovieYear BETWEEN {0} AND {1}", yr1, yr2);
                 dbSelect(querryStr);
             }                
         }
 
         private void tabPage2_Enter(object sender, EventArgs e)
-        {
-            //querryStr = "SELECT * FROM MyMovieDB2.dbo.movie";
-            //querryStr = "SELECT movieID ,Title ,Publisher ,Previewed ,MovieYear ,MyMovieDB2.dbo.movietype.Type FROM MyMovieDB2.dbo.movie, MyMovieDB2.dbo.movietype WHERE movie.typeID = movietype.typeID";
-            //dbSelect(querryStr);
+        {            
             SelectAllQuerry();
         }
 
         private void tabPage3_Enter(object sender, EventArgs e)
-        {
-            //querryStr = "SELECT movieID ,Title ,Publisher ,Previewed ,MovieYear ,MyMovieDB2.dbo.movietype.Type FROM MyMovieDB2.dbo.movie, MyMovieDB2.dbo.movietype WHERE movie.typeID = movietype.typeID";
-            //dbSelect(querryStr);
+        {            
             SelectAllQuerry();
         }        
 
         private void tabPage4_Enter(object sender, EventArgs e)
-        {
-            //querryStr = "SELECT movieID ,Title ,Publisher ,Previewed ,MovieYear ,MyMovieDB2.dbo.movietype.Type FROM MyMovieDB2.dbo.movie, MyMovieDB2.dbo.movietype WHERE movie.typeID = movietype.typeID";
-            //dbSelect(querryStr);
+        {            
             SelectAllQuerry();
         }
 
         private void tabPage5_Enter(object sender, EventArgs e)
-        {
-            //querryStr = "SELECT movieID ,Title ,Publisher ,Previewed ,MovieYear ,MyMovieDB2.dbo.movietype.Type FROM MyMovieDB2.dbo.movie, MyMovieDB2.dbo.movietype WHERE movie.typeID = movietype.typeID";
-            //dbSelect(querryStr);
+        {            
             SelectAllQuerry();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            textBox4.Clear();
-            //querryStr = "SELECT movieID ,Title ,Publisher ,Previewed ,MovieYear ,MyMovieDB2.dbo.movietype.Type FROM MyMovieDB2.dbo.movie, MyMovieDB2.dbo.movietype WHERE movie.typeID = movietype.typeID";
-            //dbSelect(querryStr);
+            textBox4.Clear();            
             SelectAllQuerry();
         }
 
@@ -211,8 +195,7 @@ namespace MyMovieDB
             string year = textBox3.Text.ToString();
             typeString = convertType(typeString);
 
-
-            querryStr = "INSERT INTO MyMovieDB2.dbo.movie(Title, Publisher, MovieYear, typeID) VALUES('" + name.Replace("'", "''") + "','" + publisher + "','" + "No" + "'," + year + "," + typeString + ")";
+            querryStr = string.Format("INSERT INTO MyMovieDB2.dbo.movie(Title, Publisher, Previewed, MovieYear, typeID) VALUES('{0}','{1}','No',{2},{3})", name.Replace("'", "''"), publisher, year, typeString);
             
             dbInsertDelUpdate(querryStr);
 
@@ -220,19 +203,7 @@ namespace MyMovieDB
             textBox2.Clear();
             textBox3.Clear();
             comboBox1.SelectedItem = null;
-        }
-
-        /*private void button6_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Process p = Process.Start("C:\\Armageddon.mp4");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }            
-        }*/
+        }       
 
         private void addButtonInDataGrid()
         {
@@ -283,28 +254,18 @@ namespace MyMovieDB
             if (dataGridView1.Columns[e.ColumnIndex] == editButton && currentRow >= 0)
             {
                 string title = dataGridView1[1, currentRow].Value.ToString();
-                string publisher = dataGridView1[2, currentRow].Value.ToString();
-                //string previewed = dataGridView1[3, currentRow].Value.ToString();
+                string publisher = dataGridView1[2, currentRow].Value.ToString();                
                 string year = dataGridView1[3, currentRow].Value.ToString();
-                string type = dataGridView1[4, currentRow].Value.ToString();
-                //runs form 2 for editing    
+                string type = dataGridView1[4, currentRow].Value.ToString();                
                 Form2 f2 = new Form2(title, publisher, year, type, movieIDString);
-                /*f2.title = title;
-                f2.publisher = publisher;
-                f2.previewed = previewed;
-                f2.year = year;
-                f2.type = type;
-                f2.movieID = movieIDInt;
-                f2.Show();
-                dataGridView1.Update();*/
+                
                 f2.Show();
 
             }
 
-
             if (dataGridView1.Columns[e.ColumnIndex] == deleteButton && currentRow >= 0)
-            {                          
-                querryStr = "DELETE FROM MyMovieDB2.dbo.movie WHERE movieID = " + movieIDString;
+            {
+                querryStr = string.Format("DELETE FROM MyMovieDB2.dbo.movie WHERE movieID = {0}", movieIDString);                
                 dbInsertDelUpdate(querryStr);
                 querryStr = "SELECT movieID ,Title ,Publisher ,MovieYear ,MyMovieDB2.dbo.movietype.Type FROM MyMovieDB2.dbo.movie, MyMovieDB2.dbo.movietype WHERE movie.typeID = movietype.typeID";
                 dbSelect(querryStr);
@@ -317,7 +278,7 @@ namespace MyMovieDB
 
                 try
                 {
-                    Process p = Process.Start("C:\\MyMovieFolder\\" + movieName + ".mp4");
+                    Process p = Process.Start("C:\\MyMovieFolder\\" + movieName + ".avi");
                 }
                 catch (Exception ex)
                 {

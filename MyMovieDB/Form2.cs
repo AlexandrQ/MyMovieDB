@@ -59,11 +59,11 @@ namespace MyMovieDB
             {
                 if (year == "")
                 {
-                    SQLUpdateString = "UPDATE MyMovieDB2.dbo.movie SET Title ='" + title.Replace("'", "''") + "', MovieYear=NULL, Publisher='" + publisher + "', typeID='" + typeString + "' WHERE movieID ='" + movieID + "'";
+                    SQLUpdateString = string.Format("UPDATE MyMovieDB2.dbo.movie SET Title ='{0}', MovieYear=NULL, Publisher='{1}', typeID='{2}' WHERE movieID ='{3}'", title.Replace("'", "''"), publisher, typeString, movieID);
                 }
                 else
                 {
-                    SQLUpdateString = "UPDATE MyMovieDB2.dbo.movie SET Title ='" + title.Replace("'", "''") + "', MovieYear=" + yr + ", Publisher='" + publisher + "', typeID='" + typeString + "' WHERE movieID='" + movieID + "'";
+                    SQLUpdateString = string.Format("UPDATE MyMovieDB2.dbo.movie SET Title ='{0}', MovieYear={1}, Publisher='{2}', typeID='{3}' WHERE movieID='{4}'", title.Replace("'", "''"), yr, publisher, typeString, movieID);
                 }
 
                 f1.dbInsertDelUpdate(SQLUpdateString);
